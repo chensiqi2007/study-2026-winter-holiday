@@ -1,0 +1,1203 @@
+<mujoco model="photorealistic_classroom">
+    <compiler angle="degree" coordinate="local" inertiafromgeom="true"/>
+    <option timestep="0.01" gravity="0 0 -9.81"/>
+
+    <asset>
+        <material name="wood_floor" rgba="0.72 0.55 0.35 1"/>
+        <material name="wood_door" rgba="0.55 0.35 0.2 1"/>
+        <material name="desk_top_mat" rgba="0.85 0.75 0.65 1"/>
+        <material name="leg_metal" rgba="0.1 0.1 0.1 1"/>
+        <material name="chair_mat" rgba="0.2 0.2 0.2 1"/>
+        <material name="wall_mat" rgba="0.95 0.95 0.95 1"/>
+        <material name="screen_mat" rgba="1 1 1 1"/>
+        <material name="projector_beam" rgba="1 1 0.8 0.1"/> <material name="glass" rgba="0.7 0.85 1 0.2"/>
+        <material name="water_blue" rgba="0.5 0.8 1 0.5"/>
+        <material name="book1" rgba="0.8 0.2 0.2 1"/>
+        <material name="book2" rgba="0.2 0.6 0.2 1"/>
+    </asset>
+
+    <worldbody>
+        <light name="sun" directional="true" castshadow="true" pos="0 0 10" dir="-0.5 -0.2 -1"/>
+        <geom name="ground" type="plane" size="100 100 1" material="wood_floor"/>
+
+        <body name="corridor" pos="24 -6 0">
+            <geom type="box" size="32 2 0.05" pos="0 0 0.05" material="wood_floor"/>
+            <geom name="corridor_wall" type="box" size="32 0.1 1.75" pos="0 -2 1.75" material="wall_mat"/>
+            <body name="water_dispenser" pos="-20 -1.6 0">
+                <geom name="wd_1" type="box" size="0.18 0.18 0.4" pos="0 0 0.4" rgba="0.9 0.9 0.9 1"/>
+                <geom name="wd_2" type="cylinder" size="0.15 0.22" pos="0 0 1.52" material="water_blue"/>
+            </body>
+        </body>
+    
+        <body name="classroom_1" pos="0 0 0">
+            <geom type="box" size="5 4 0.05" pos="0 0 0.05" material="wood_floor"/>
+            <geom name="c1_w1" type="box" size="5 0.1 1.75" pos="0 -4 1.75" material="wall_mat"/>
+            <geom name="c1_w2" type="box" size="5 0.1 1.75" pos="0 4 1.75" material="wall_mat"/>
+            <geom name="c1_w3" type="box" size="0.1 4 1.75" pos="-5 0 1.75" material="wall_mat"/>
+            <geom name="c1_w4" type="box" size="0.1 4 1.75" pos="5 0 1.75" material="wall_mat"/>
+
+            <geom name="c1_screen" type="box" size="1.8 0.01 1.1" pos="0 3.98 2.2" material="screen_mat"/>
+            <body name="c1_projector" pos="0 0 3.3">
+                <geom type="box" size="0.2 0.15 0.1" rgba="0.1 0.1 0.1 1"/>
+                <geom type="ellipsoid" size="0.3 1.5 0.3" pos="0 1.8 -0.8" quat="0.707 0.707 0 0" material="projector_beam" contype="0" conaffinity="0"/>
+            </body>
+            <geom name="c1_podium" type="box" size="0.7 0.4 0.5" pos="0 3 0.5" material="wood_door"/>
+        
+            <body name="c1_set_1" pos="-3 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_2" pos="-1 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_3" pos="1 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_4" pos="3 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_5" pos="-3 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_6" pos="-1 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_7" pos="1 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_8" pos="3 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_9" pos="-3 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_10" pos="-1 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_11" pos="1 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_12" pos="3 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_13" pos="-3 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_14" pos="-1 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_15" pos="1 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_16" pos="3 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_17" pos="-3 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_18" pos="-1 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_19" pos="1 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c1_set_20" pos="3 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body></body>
+        <body name="classroom_2" pos="12 0 0">
+            <geom type="box" size="5 4 0.05" pos="0 0 0.05" material="wood_floor"/>
+            <geom name="c2_w1" type="box" size="5 0.1 1.75" pos="0 -4 1.75" material="wall_mat"/>
+            <geom name="c2_w2" type="box" size="5 0.1 1.75" pos="0 4 1.75" material="wall_mat"/>
+            <geom name="c2_w3" type="box" size="0.1 4 1.75" pos="-5 0 1.75" material="wall_mat"/>
+            <geom name="c2_w4" type="box" size="0.1 4 1.75" pos="5 0 1.75" material="wall_mat"/>
+
+            <geom name="c2_screen" type="box" size="1.8 0.01 1.1" pos="0 3.98 2.2" material="screen_mat"/>
+            <body name="c2_projector" pos="0 0 3.3">
+                <geom type="box" size="0.2 0.15 0.1" rgba="0.1 0.1 0.1 1"/>
+                <geom type="ellipsoid" size="0.3 1.5 0.3" pos="0 1.8 -0.8" quat="0.707 0.707 0 0" material="projector_beam" contype="0" conaffinity="0"/>
+            </body>
+            <geom name="c2_podium" type="box" size="0.7 0.4 0.5" pos="0 3 0.5" material="wood_door"/>
+        
+            <body name="c2_set_1" pos="-3 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_2" pos="-1 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_3" pos="1 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_4" pos="3 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_5" pos="-3 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_6" pos="-1 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_7" pos="1 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_8" pos="3 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_9" pos="-3 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_10" pos="-1 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_11" pos="1 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_12" pos="3 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_13" pos="-3 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_14" pos="-1 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_15" pos="1 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_16" pos="3 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_17" pos="-3 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_18" pos="-1 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_19" pos="1 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c2_set_20" pos="3 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body></body>
+        <body name="classroom_3" pos="24 0 0">
+            <geom type="box" size="5 4 0.05" pos="0 0 0.05" material="wood_floor"/>
+            <geom name="c3_w1" type="box" size="5 0.1 1.75" pos="0 -4 1.75" material="wall_mat"/>
+            <geom name="c3_w2" type="box" size="5 0.1 1.75" pos="0 4 1.75" material="wall_mat"/>
+            <geom name="c3_w3" type="box" size="0.1 4 1.75" pos="-5 0 1.75" material="wall_mat"/>
+            <geom name="c3_w4" type="box" size="0.1 4 1.75" pos="5 0 1.75" material="wall_mat"/>
+
+            <geom name="c3_screen" type="box" size="1.8 0.01 1.1" pos="0 3.98 2.2" material="screen_mat"/>
+            <body name="c3_projector" pos="0 0 3.3">
+                <geom type="box" size="0.2 0.15 0.1" rgba="0.1 0.1 0.1 1"/>
+                <geom type="ellipsoid" size="0.3 1.5 0.3" pos="0 1.8 -0.8" quat="0.707 0.707 0 0" material="projector_beam" contype="0" conaffinity="0"/>
+            </body>
+            <geom name="c3_podium" type="box" size="0.7 0.4 0.5" pos="0 3 0.5" material="wood_door"/>
+        
+            <body name="c3_set_1" pos="-3 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_2" pos="-1 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_3" pos="1 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_4" pos="3 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_5" pos="-3 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_6" pos="-1 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_7" pos="1 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_8" pos="3 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_9" pos="-3 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_10" pos="-1 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_11" pos="1 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_12" pos="3 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_13" pos="-3 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_14" pos="-1 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_15" pos="1 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_16" pos="3 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_17" pos="-3 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_18" pos="-1 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_19" pos="1 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c3_set_20" pos="3 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body></body>
+        <body name="classroom_4" pos="36 0 0">
+            <geom type="box" size="5 4 0.05" pos="0 0 0.05" material="wood_floor"/>
+            <geom name="c4_w1" type="box" size="5 0.1 1.75" pos="0 -4 1.75" material="wall_mat"/>
+            <geom name="c4_w2" type="box" size="5 0.1 1.75" pos="0 4 1.75" material="wall_mat"/>
+            <geom name="c4_w3" type="box" size="0.1 4 1.75" pos="-5 0 1.75" material="wall_mat"/>
+            <geom name="c4_w4" type="box" size="0.1 4 1.75" pos="5 0 1.75" material="wall_mat"/>
+
+            <geom name="c4_screen" type="box" size="1.8 0.01 1.1" pos="0 3.98 2.2" material="screen_mat"/>
+            <body name="c4_projector" pos="0 0 3.3">
+                <geom type="box" size="0.2 0.15 0.1" rgba="0.1 0.1 0.1 1"/>
+                <geom type="ellipsoid" size="0.3 1.5 0.3" pos="0 1.8 -0.8" quat="0.707 0.707 0 0" material="projector_beam" contype="0" conaffinity="0"/>
+            </body>
+            <geom name="c4_podium" type="box" size="0.7 0.4 0.5" pos="0 3 0.5" material="wood_door"/>
+        
+            <body name="c4_set_1" pos="-3 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_2" pos="-1 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_3" pos="1 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_4" pos="3 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_5" pos="-3 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_6" pos="-1 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_7" pos="1 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_8" pos="3 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_9" pos="-3 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_10" pos="-1 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_11" pos="1 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_12" pos="3 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_13" pos="-3 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_14" pos="-1 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_15" pos="1 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_16" pos="3 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_17" pos="-3 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_18" pos="-1 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_19" pos="1 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c4_set_20" pos="3 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body></body>
+        <body name="classroom_5" pos="48 0 0">
+            <geom type="box" size="5 4 0.05" pos="0 0 0.05" material="wood_floor"/>
+            <geom name="c5_w1" type="box" size="5 0.1 1.75" pos="0 -4 1.75" material="wall_mat"/>
+            <geom name="c5_w2" type="box" size="5 0.1 1.75" pos="0 4 1.75" material="wall_mat"/>
+            <geom name="c5_w3" type="box" size="0.1 4 1.75" pos="-5 0 1.75" material="wall_mat"/>
+            <geom name="c5_w4" type="box" size="0.1 4 1.75" pos="5 0 1.75" material="wall_mat"/>
+
+            <geom name="c5_screen" type="box" size="1.8 0.01 1.1" pos="0 3.98 2.2" material="screen_mat"/>
+            <body name="c5_projector" pos="0 0 3.3">
+                <geom type="box" size="0.2 0.15 0.1" rgba="0.1 0.1 0.1 1"/>
+                <geom type="ellipsoid" size="0.3 1.5 0.3" pos="0 1.8 -0.8" quat="0.707 0.707 0 0" material="projector_beam" contype="0" conaffinity="0"/>
+            </body>
+            <geom name="c5_podium" type="box" size="0.7 0.4 0.5" pos="0 3 0.5" material="wood_door"/>
+        
+            <body name="c5_set_1" pos="-3 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_2" pos="-1 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_3" pos="1 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_4" pos="3 -2.5 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_5" pos="-3 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_6" pos="-1 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_7" pos="1 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_8" pos="3 -1.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_9" pos="-3 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_10" pos="-1 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_11" pos="1 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_12" pos="3 -0.10000000000000009 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_13" pos="-3 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_14" pos="-1 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_15" pos="1 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_16" pos="3 1.0999999999999996 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_17" pos="-3 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_18" pos="-1 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_19" pos="1 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body>
+            <body name="c5_set_20" pos="3 2.3 0">
+                <geom type="box" size="0.4 0.3 0.02" pos="0 0 0.72" material="desk_top_mat"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 -0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="-0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="cylinder" size="0.015 0.36" pos="0.38 0.28 0.36" material="leg_metal"/>
+                <geom type="box" size="0.12 0.08 0.02" pos="0.1 0.1 0.75" material="book1"/>
+                <geom type="box" size="0.2 0.2 0.02" pos="0 -0.55 0.45" material="chair_mat"/>
+                <geom type="box" size="0.2 0.02 0.2" pos="0 -0.73 0.65" material="chair_mat"/>
+                <geom type="cylinder" size="0.015 0.22" pos="0 -0.55 0.22" material="leg_metal"/>
+            </body></body>
+    </worldbody>
+</mujoco>
