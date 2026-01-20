@@ -1,0 +1,180 @@
+
+<mujoco model="z1_factory_go2">
+    <compiler angle="radian" meshdir="assets" autolimits="true"/>
+    <option integrator="implicitfast" timestep="0.002"/>
+
+    <default>
+        <default class="z1">
+            <joint damping="2" frictionloss="1"/>
+            <general biastype="affine" gainprm="1000" biasprm="0 -1000 -100" forcerange="-30 30"/>
+            <geom type="mesh" rgba="0.2 0.2 0.2 1" mass="0.5"/>
+        </default>
+        <default class="go2">
+            <joint damping="3" armature="0.05"/>
+            <position kp="200" forcerange="-30 30"/>
+            <geom rgba="0.8 0.8 0.8 1" mass="0.3"/>
+        </default>
+    </default>
+
+    <asset>
+        <mesh name="link00" file="z1_Link00.stl"/><mesh name="link01" file="z1_Link01.stl"/>
+        <mesh name="link02" file="z1_Link02.stl"/><mesh name="link03" file="z1_Link03.stl"/>
+        <mesh name="link04" file="z1_Link04.stl"/><mesh name="link05" file="z1_Link05.stl"/>
+        <mesh name="link06" file="z1_Link06.stl"/>
+        <texture type="2d" name="grid" builtin="checker" mark="edge" rgb1="0.1 0.2 0.3" rgb2="0.2 0.3 0.4" width="300" height="300"/>
+        <material name="grid" texture="grid" texrepeat="5 5" reflectance="0.2"/>
+    </asset>
+
+    <worldbody>
+        <light pos="0 0 4" dir="0 0 -1" diffuse="0.8 0.8 0.8"/>
+        <geom name="floor" size="5 5 0.01" type="plane" material="grid"/>
+
+        <body name="conveyor" pos="0 0 0.4">
+            <geom type="box" size="2.5 0.3 0.05" rgba="0.2 0.2 0.2 1" mass="10"/>
+            <body name="go2_payload" pos="-1.5 0 0.06">
+                <joint name="belt_joint" type="slide" axis="1 0 0" damping="50"/>
+
+                <body name="go2_trunk" pos="0 0 0.15">
+                    <geom type="box" size="0.2 0.1 0.06" mass="5"/>
+
+                    <body name="FL_hip" pos="0.15 0.1 0">
+                        <joint name="FL_j1" axis="1 0 0" class="go2"/>
+                        <geom type="sphere" size="0.03" mass="0.5"/>
+                        <body name="FL_thigh" pos="0 0 -0.1">
+                            <joint name="FL_j2" axis="0 1 0" class="go2"/>
+                            <geom type="capsule" size="0.02" fromto="0 0 0 0 0 -0.1" mass="0.5"/>
+                            <body name="FL_calf" pos="0 0 -0.1">
+                                <joint name="FL_j3" axis="0 1 0" class="go2"/>
+                                <geom type="capsule" size="0.015" fromto="0 0 0 0 0 -0.1" mass="0.4"/>
+                            </body>
+                        </body>
+                    </body>
+                    <body name="FR_hip" pos="0.15 -0.1 0">
+                        <joint name="FR_j1" axis="1 0 0" class="go2"/>
+                        <geom type="sphere" size="0.03" mass="0.5"/>
+                        <body name="FR_thigh" pos="0 0 -0.1">
+                            <joint name="FR_j2" axis="0 1 0" class="go2"/>
+                            <geom type="capsule" size="0.02" fromto="0 0 0 0 0 -0.1" mass="0.5"/>
+                            <body name="FR_calf" pos="0 0 -0.1">
+                                <joint name="FR_j3" axis="0 1 0" class="go2"/>
+                                <geom type="capsule" size="0.015" fromto="0 0 0 0 0 -0.1" mass="0.4"/>
+                            </body>
+                        </body>
+                    </body>
+                    <body name="HL_hip" pos="-0.15 0.1 0">
+                        <joint name="HL_j1" axis="1 0 0" class="go2"/>
+                        <geom type="sphere" size="0.03" mass="0.5"/>
+                        <body name="HL_thigh" pos="0 0 -0.1">
+                            <joint name="HL_j2" axis="0 1 0" class="go2"/>
+                            <geom type="capsule" size="0.02" fromto="0 0 0 0 0 -0.1" mass="0.5"/>
+                            <body name="HL_calf" pos="0 0 -0.1">
+                                <joint name="HL_j3" axis="0 1 0" class="go2"/>
+                                <geom type="capsule" size="0.015" fromto="0 0 0 0 0 -0.1" mass="0.4"/>
+                            </body>
+                        </body>
+                    </body>
+                    <body name="HR_hip" pos="-0.15 -0.1 0">
+                        <joint name="HR_j1" axis="1 0 0" class="go2"/>
+                        <geom type="sphere" size="0.03" mass="0.5"/>
+                        <body name="HR_thigh" pos="0 0 -0.1">
+                            <joint name="HR_j2" axis="0 1 0" class="go2"/>
+                            <geom type="capsule" size="0.02" fromto="0 0 0 0 0 -0.1" mass="0.5"/>
+                            <body name="HR_calf" pos="0 0 -0.1">
+                                <joint name="HR_j3" axis="0 1 0" class="go2"/>
+                                <geom type="capsule" size="0.015" fromto="0 0 0 0 0 -0.1" mass="0.4"/>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+
+        <body name="L1_base" pos="-0.6 -0.6 0" euler="0 0 0">
+            <geom type="box" size="0.1 0.1 0.2" pos="0 0 0.2" mass="2"/>
+            <body name="L1_link00" pos="0 0 0.4" childclass="z1">
+                <geom mesh="link00"/><body name="L1_link01" pos="0 0 0.05"><joint name="L1_j1" axis="0 0 1"/>
+                <geom mesh="link01"/><body name="L1_link02" pos="0 0 0.04"><joint name="L1_j2" axis="0 1 0"/>
+                <geom mesh="link02"/><body name="L1_link03" pos="-0.3 0 0"><joint name="L1_j3" axis="0 1 0"/>
+                <geom mesh="link03"/><body name="L1_link04" pos="0.2 0 0.05"><joint name="L1_j4" axis="0 1 0"/>
+                <geom mesh="link04"/><body name="L1_link05" pos="0.07 0 0"><joint name="L1_j5" axis="0 0 1"/>
+                <geom mesh="link05"/><body name="L1_link06" pos="0.05 0 0"><joint name="L1_j6" axis="1 0 0"/>
+                <geom mesh="link06"/></body></body></body></body></body></body>
+            </body>
+        </body>
+        <body name="L2_base" pos="0.6 -0.6 0" euler="0 0 0">
+            <geom type="box" size="0.1 0.1 0.2" pos="0 0 0.2" mass="2"/>
+            <body name="L2_link00" pos="0 0 0.4" childclass="z1">
+                <geom mesh="link00"/><body name="L2_link01" pos="0 0 0.05"><joint name="L2_j1" axis="0 0 1"/>
+                <geom mesh="link01"/><body name="L2_link02" pos="0 0 0.04"><joint name="L2_j2" axis="0 1 0"/>
+                <geom mesh="link02"/><body name="L2_link03" pos="-0.3 0 0"><joint name="L2_j3" axis="0 1 0"/>
+                <geom mesh="link03"/><body name="L2_link04" pos="0.2 0 0.05"><joint name="L2_j4" axis="0 1 0"/>
+                <geom mesh="link04"/><body name="L2_link05" pos="0.07 0 0"><joint name="L2_j5" axis="0 0 1"/>
+                <geom mesh="link05"/><body name="L2_link06" pos="0.05 0 0"><joint name="L2_j6" axis="1 0 0"/>
+                <geom mesh="link06"/></body></body></body></body></body></body>
+            </body>
+        </body>
+        <body name="R1_base" pos="-0.6 0.6 0" euler="0 0 3.14">
+            <geom type="box" size="0.1 0.1 0.2" pos="0 0 0.2" mass="2"/>
+            <body name="R1_link00" pos="0 0 0.4" childclass="z1">
+                <geom mesh="link00"/><body name="R1_link01" pos="0 0 0.05"><joint name="R1_j1" axis="0 0 1"/>
+                <geom mesh="link01"/><body name="R1_link02" pos="0 0 0.04"><joint name="R1_j2" axis="0 1 0"/>
+                <geom mesh="link02"/><body name="R1_link03" pos="-0.3 0 0"><joint name="R1_j3" axis="0 1 0"/>
+                <geom mesh="link03"/><body name="R1_link04" pos="0.2 0 0.05"><joint name="R1_j4" axis="0 1 0"/>
+                <geom mesh="link04"/><body name="R1_link05" pos="0.07 0 0"><joint name="R1_j5" axis="0 0 1"/>
+                <geom mesh="link05"/><body name="R1_link06" pos="0.05 0 0"><joint name="R1_j6" axis="1 0 0"/>
+                <geom mesh="link06"/></body></body></body></body></body></body>
+            </body>
+        </body>
+        <body name="R2_base" pos="0.6 0.6 0" euler="0 0 3.14">
+            <geom type="box" size="0.1 0.1 0.2" pos="0 0 0.2" mass="2"/>
+            <body name="R2_link00" pos="0 0 0.4" childclass="z1">
+                <geom mesh="link00"/><body name="R2_link01" pos="0 0 0.05"><joint name="R2_j1" axis="0 0 1"/>
+                <geom mesh="link01"/><body name="R2_link02" pos="0 0 0.04"><joint name="R2_j2" axis="0 1 0"/>
+                <geom mesh="link02"/><body name="R2_link03" pos="-0.3 0 0"><joint name="R2_j3" axis="0 1 0"/>
+                <geom mesh="link03"/><body name="R2_link04" pos="0.2 0 0.05"><joint name="R2_j4" axis="0 1 0"/>
+                <geom mesh="link04"/><body name="R2_link05" pos="0.07 0 0"><joint name="R2_j5" axis="0 0 1"/>
+                <geom mesh="link05"/><body name="R2_link06" pos="0.05 0 0"><joint name="R2_j6" axis="1 0 0"/>
+                <geom mesh="link06"/></body></body></body></body></body></body>
+            </body>
+        </body>
+    </worldbody>
+    <actuator>
+        <general name="L1_m1" joint="L1_j1" class="z1"/>
+        <general name="L1_m2" joint="L1_j2" class="z1"/>
+        <general name="L1_m3" joint="L1_j3" class="z1"/>
+        <general name="L1_m4" joint="L1_j4" class="z1"/>
+        <general name="L1_m5" joint="L1_j5" class="z1"/>
+        <general name="L1_m6" joint="L1_j6" class="z1"/>
+        <general name="L2_m1" joint="L2_j1" class="z1"/>
+        <general name="L2_m2" joint="L2_j2" class="z1"/>
+        <general name="L2_m3" joint="L2_j3" class="z1"/>
+        <general name="L2_m4" joint="L2_j4" class="z1"/>
+        <general name="L2_m5" joint="L2_j5" class="z1"/>
+        <general name="L2_m6" joint="L2_j6" class="z1"/>
+        <general name="R1_m1" joint="R1_j1" class="z1"/>
+        <general name="R1_m2" joint="R1_j2" class="z1"/>
+        <general name="R1_m3" joint="R1_j3" class="z1"/>
+        <general name="R1_m4" joint="R1_j4" class="z1"/>
+        <general name="R1_m5" joint="R1_j5" class="z1"/>
+        <general name="R1_m6" joint="R1_j6" class="z1"/>
+        <general name="R2_m1" joint="R2_j1" class="z1"/>
+        <general name="R2_m2" joint="R2_j2" class="z1"/>
+        <general name="R2_m3" joint="R2_j3" class="z1"/>
+        <general name="R2_m4" joint="R2_j4" class="z1"/>
+        <general name="R2_m5" joint="R2_j5" class="z1"/>
+        <general name="R2_m6" joint="R2_j6" class="z1"/>
+        <position name="FL_m1" joint="FL_j1" class="go2"/>
+        <position name="FL_m2" joint="FL_j2" class="go2"/>
+        <position name="FL_m3" joint="FL_j3" class="go2"/>
+        <position name="FR_m1" joint="FR_j1" class="go2"/>
+        <position name="FR_m2" joint="FR_j2" class="go2"/>
+        <position name="FR_m3" joint="FR_j3" class="go2"/>
+        <position name="HL_m1" joint="HL_j1" class="go2"/>
+        <position name="HL_m2" joint="HL_j2" class="go2"/>
+        <position name="HL_m3" joint="HL_j3" class="go2"/>
+        <position name="HR_m1" joint="HR_j1" class="go2"/>
+        <position name="HR_m2" joint="HR_j2" class="go2"/>
+        <position name="HR_m3" joint="HR_j3" class="go2"/>
+        <velocity name="belt_m" joint="belt_joint" kv="200"/>
+    </actuator>
+</mujoco>
