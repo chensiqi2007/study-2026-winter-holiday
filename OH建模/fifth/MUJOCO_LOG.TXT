@@ -1,0 +1,12 @@
+Wed Jan 21 16:24:00 2026
+WARNING: Nan, Inf or huge value in CTRL at ACTUATOR 5. The simulation is unstable. Time = 11.2720.
+
+Wed Jan 21 16:24:00 2026
+WARNING: Nan, Inf or huge value in QACC at DOF 20. The simulation is unstable. Time = 11.7960.
+
+Wed Jan 21 16:24:03 2026
+WARNING: Nan, Inf or huge value in CTRL at ACTUATOR 5. The simulation is unstable. Time = 1.6940.
+
+Wed Jan 21 16:30:39 2026
+WARNING: Nan, Inf or huge value in CTRL at ACTUATOR 5. The simulation is unstable. Time = 9.6920.
+

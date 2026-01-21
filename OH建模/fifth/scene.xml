@@ -1,0 +1,62 @@
+<mujoco model="z1_factory_final_fixed">
+    <compiler angle="radian" meshdir="assets" autolimits="true"/>
+    <option integrator="implicitfast" timestep="0.002"/>
+
+    <visual>
+        <quality shadowsize="4096"/>
+    </visual>
+
+    <default>
+        <default class="z1">
+            <joint damping="3" frictionloss="1"/>
+            <general biastype="affine" gainprm="1500" biasprm="0 -1500 -150" forcerange="-50 50"/>
+            <geom type="mesh" material="white_metal"/>
+        </default>
+    </default>
+
+    <asset>
+        <mesh name="link00" file="z1_Link00.stl"/><mesh name="link01" file="z1_Link01.stl"/>
+        <mesh name="link02" file="z1_Link02.stl"/><mesh name="link03" file="z1_Link03.stl"/>
+        <mesh name="link04" file="z1_Link04.stl"/><mesh name="link05" file="z1_Link05.stl"/>
+        <mesh name="link06" file="z1_Link06.stl"/>
+        
+        <texture type="skybox" builtin="gradient" rgb1="0.4 0.4 0.4" rgb2="0 0 0" width="512" height="512"/>
+        <texture type="2d" name="grid" builtin="checker" mark="edge" rgb1="0.05 0.05 0.05" rgb2="0.1 0.1 0.1" width="300" height="300"/>
+        
+        <material name="floor_mat" texture="grid" texrepeat="5 5" reflectance="0.2"/>
+        <material name="white_metal" rgba="0.95 0.95 0.95 1" shininess="1" specular="1" reflectance="0.8"/>
+        <material name="drone_mat" rgba="0.1 0.1 0.1 1" shininess="0.5"/>
+    </asset>
+
+    <worldbody>
+        <light pos="0 0 5" diffuse="1.2 1.2 1.2" castshadow="true"/>
+        <light pos="2 2 4" diffuse="0.4 0.4 0.4"/>
+
+        <geom name="floor" size="5 5 0.01" type="plane" material="floor_mat"/>
+
+        <body name="conveyor" pos="0 0 0.4">
+            <geom type="box" size="2.5 0.3 0.05" rgba="0.2 0.2 0.2 1"/>
+            <body name="drone_cargo" pos="-1.8 0 0.06">
+                <joint name="belt_joint" type="slide" axis="1 0 0"/>
+                <body name="drone_body">
+                    <geom type="box" size="0.1 0.04 0.02" material="drone_mat"/> 
+                    <geom name="led_red" type="sphere" size="0.02" pos="0.08 0.025 0.025" rgba="1 0 0 1"/>
+                    <geom name="led_blue" type="sphere" size="0.02" pos="0.08 -0.025 0.025" rgba="0 0 1 1"/>
+                </body>
+            </body>
+        </body>
+
+        <body name="L1_base" pos="-0.8 -0.6 0"><geom type="box" size="0.1 0.1 0.2" pos="0 0 0.2" material="white_metal"/><body name="L1_link00" pos="0 0 0.4" childclass="z1"><geom mesh="link00"/><body name="L1_link01" pos="0 0 0.05"><joint name="L1_j1" axis="0 0 1"/><geom mesh="link01"/><body name="L1_link02" pos="0 0 0.04"><joint name="L1_j2" axis="0 1 0"/><geom mesh="link02"/><body name="L1_link03" pos="-0.3 0 0"><joint name="L1_j3" axis="0 1 0"/><geom mesh="link03"/><body name="L1_link04" pos="0.2 0 0.05"><joint name="L1_j4" axis="0 1 0"/><geom mesh="link04"/><body name="L1_link05" pos="0.07 0 0"><joint name="L1_j5" axis="0 0 1"/><geom mesh="link05"/><body name="L1_link06" pos="0.05 0 0"><joint name="L1_j6" axis="1 0 0"/><geom mesh="link06"/></body></body></body></body></body></body></body></body>
+        <body name="L2_base" pos="0.8 -0.6 0"><geom type="box" size="0.1 0.1 0.2" pos="0 0 0.2" material="white_metal"/><body name="L2_link00" pos="0 0 0.4" childclass="z1"><geom mesh="link00"/><body name="L2_link01" pos="0 0 0.05"><joint name="L2_j1" axis="0 0 1"/><geom mesh="link01"/><body name="L2_link02" pos="0 0 0.04"><joint name="L2_j2" axis="0 1 0"/><geom mesh="link02"/><body name="L2_link03" pos="-0.3 0 0"><joint name="L2_j3" axis="0 1 0"/><geom mesh="link03"/><body name="L2_link04" pos="0.2 0 0.05"><joint name="L2_j4" axis="0 1 0"/><geom mesh="link04"/><body name="L2_link05" pos="0.07 0 0"><joint name="L2_j5" axis="0 0 1"/><geom mesh="link05"/><body name="L2_link06" pos="0.05 0 0"><joint name="L2_j6" axis="1 0 0"/><geom mesh="link06"/></body></body></body></body></body></body></body></body>
+        <body name="R1_base" pos="-0.8 0.6 0" euler="0 0 3.14"><geom type="box" size="0.1 0.1 0.2" pos="0 0 0.2" material="white_metal"/><body name="R1_link00" pos="0 0 0.4" childclass="z1"><geom mesh="link00"/><body name="R1_link01" pos="0 0 0.05"><joint name="R1_j1" axis="0 0 1"/><geom mesh="link01"/><body name="R1_link02" pos="0 0 0.04"><joint name="R1_j2" axis="0 1 0"/><geom mesh="link02"/><body name="R1_link03" pos="-0.3 0 0"><joint name="R1_j3" axis="0 1 0"/><geom mesh="link03"/><body name="R1_link04" pos="0.2 0 0.05"><joint name="R1_j4" axis="0 1 0"/><geom mesh="link04"/><body name="R1_link05" pos="0.07 0 0"><joint name="R1_j5" axis="0 0 1"/><geom mesh="link05"/><body name="R1_link06" pos="0.05 0 0"><joint name="R1_j6" axis="1 0 0"/><geom mesh="link06"/></body></body></body></body></body></body></body></body>
+        <body name="R2_base" pos="0.8 0.6 0" euler="0 0 3.14"><geom type="box" size="0.1 0.1 0.2" pos="0 0 0.2" material="white_metal"/><body name="R2_link00" pos="0 0 0.4" childclass="z1"><geom mesh="link00"/><body name="R2_link01" pos="0 0 0.05"><joint name="R2_j1" axis="0 0 1"/><geom mesh="link01"/><body name="R2_link02" pos="0 0 0.04"><joint name="R2_j2" axis="0 1 0"/><geom mesh="link02"/><body name="R2_link03" pos="-0.3 0 0"><joint name="R2_j3" axis="0 1 0"/><geom mesh="link03"/><body name="R2_link04" pos="0.2 0 0.05"><joint name="R2_j4" axis="0 1 0"/><geom mesh="link04"/><body name="R2_link05" pos="0.07 0 0"><joint name="R2_j5" axis="0 0 1"/><geom mesh="link05"/><body name="R2_link06" pos="0.05 0 0"><joint name="R2_j6" axis="1 0 0"/><geom mesh="link06"/></body></body></body></body></body></body></body></body>
+    </worldbody>
+
+    <actuator>
+        <general name="L1_m1" joint="L1_j1" class="z1"/><general name="L1_m2" joint="L1_j2" class="z1"/><general name="L1_m3" joint="L1_j3" class="z1"/><general name="L1_m4" joint="L1_j4" class="z1"/><general name="L1_m5" joint="L1_j5" class="z1"/><general name="L1_m6" joint="L1_j6" class="z1"/>
+        <general name="L2_m1" joint="L2_j1" class="z1"/><general name="L2_m2" joint="L2_j2" class="z1"/><general name="L2_m3" joint="L2_j3" class="z1"/><general name="L2_m4" joint="L2_j4" class="z1"/><general name="L2_m5" joint="L2_j5" class="z1"/><general name="L2_m6" joint="L2_j6" class="z1"/>
+        <general name="R1_m1" joint="R1_j1" class="z1"/><general name="R1_m2" joint="R1_j2" class="z1"/><general name="R1_m3" joint="R1_j3" class="z1"/><general name="R1_m4" joint="R1_j4" class="z1"/><general name="R1_m5" joint="R1_j5" class="z1"/><general name="R1_m6" joint="R1_j6" class="z1"/>
+        <general name="R2_m1" joint="R2_j1" class="z1"/><general name="R2_m2" joint="R2_j2" class="z1"/><general name="R2_m3" joint="R2_j3" class="z1"/><general name="R2_m4" joint="R2_j4" class="z1"/><general name="R2_m5" joint="R2_j5" class="z1"/><general name="R2_m6" joint="R2_j6" class="z1"/>
+        <velocity name="belt_m" joint="belt_joint" kv="200"/>
+    </actuator>
+</mujoco>
