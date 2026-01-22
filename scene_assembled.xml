@@ -1,0 +1,400 @@
+
+<mujoco model="z1_factory_assembly">
+    <compiler angle="radian" meshdir="." autolimits="true"/>
+    <option integrator="implicitfast" timestep="0.002"/>
+    <visual><quality shadowsize="4096"/></visual>
+
+    <asset>
+        <texture type="2d" name="grid" builtin="checker" mark="edge" rgb1="0.05 0.05 0.05" rgb2="0.1 0.1 0.1" width="300" height="300"/>
+        <material name="floor_mat" texture="grid" texrepeat="5 5" reflectance="0.2"/>
+        
+    <mesh file="z1_Link00.stl"/>
+    <mesh file="z1_Link01.stl"/>
+    <mesh file="z1_Link02.stl"/>
+    <mesh file="z1_Link03.stl"/>
+    <mesh file="z1_Link04.stl"/>
+    <mesh file="z1_Link05.stl"/>
+    <mesh file="z1_Link06.stl"/>
+  
+        
+    <material name="polished_plastic" rgba="0.631 0.659 0.678 1"/>
+    <material name="polished_gold" rgba="0.969 0.878 0.6 1"/>
+    <material name="medium_gloss_plastic" rgba="0.109 0.184 0.0 1"/>
+    <material name="propeller_plastic" rgba="0.792 0.820 0.933 1"/>
+    <material name="white" rgba="1 1 1 1"/>
+    <material name="body_frame_plastic" rgba="0.102 0.102 0.102 1"/>
+    <material name="burnished_chrome" rgba="0.898 0.898 0.898 1"/>
+
+    <mesh file="cf2_0.obj"/>
+    <mesh file="cf2_1.obj"/>
+    <mesh file="cf2_2.obj"/>
+    <mesh file="cf2_3.obj"/>
+    <mesh file="cf2_4.obj"/>
+    <mesh file="cf2_5.obj"/>
+    <mesh file="cf2_6.obj"/>
+    <mesh file="cf2_collision_0.obj"/>
+    <mesh file="cf2_collision_1.obj"/>
+    <mesh file="cf2_collision_2.obj"/>
+    <mesh file="cf2_collision_3.obj"/>
+    <mesh file="cf2_collision_4.obj"/>
+    <mesh file="cf2_collision_5.obj"/>
+    <mesh file="cf2_collision_6.obj"/>
+    <mesh file="cf2_collision_7.obj"/>
+    <mesh file="cf2_collision_8.obj"/>
+    <mesh file="cf2_collision_9.obj"/>
+    <mesh file="cf2_collision_10.obj"/>
+    <mesh file="cf2_collision_11.obj"/>
+    <mesh file="cf2_collision_12.obj"/>
+    <mesh file="cf2_collision_13.obj"/>
+    <mesh file="cf2_collision_14.obj"/>
+    <mesh file="cf2_collision_15.obj"/>
+    <mesh file="cf2_collision_16.obj"/>
+    <mesh file="cf2_collision_17.obj"/>
+    <mesh file="cf2_collision_18.obj"/>
+    <mesh file="cf2_collision_19.obj"/>
+    <mesh file="cf2_collision_20.obj"/>
+    <mesh file="cf2_collision_21.obj"/>
+    <mesh file="cf2_collision_22.obj"/>
+    <mesh file="cf2_collision_23.obj"/>
+    <mesh file="cf2_collision_24.obj"/>
+    <mesh file="cf2_collision_25.obj"/>
+    <mesh file="cf2_collision_26.obj"/>
+    <mesh file="cf2_collision_27.obj"/>
+    <mesh file="cf2_collision_28.obj"/>
+    <mesh file="cf2_collision_29.obj"/>
+    <mesh file="cf2_collision_30.obj"/>
+    <mesh file="cf2_collision_31.obj"/>
+  
+    </asset>
+
+    <default>
+        
+    <default class="z1">
+      <joint damping="1" frictionloss="1"/>
+      <general biastype="affine" gainprm="1000" biasprm="0 -1000 -100" forcerange="-30 30"/>
+      <default class="visual">
+        <geom type="mesh" group="2" contype="0" conaffinity="0"/>
+      
+        
+    <default class="cf2">
+      <default class="visual">
+        <geom group="2" type="mesh" contype="0" conaffinity="0"/>
+      
+    </default>
+
+    <worldbody>
+        <light pos="0 0 5" diffuse="1 1 1"/>
+        <geom name="floor" size="5 5 0.01" type="plane" material="floor_mat"/>
+
+        <body name="conveyor" pos="0 0 0.4">
+            <geom type="box" size="2.5 0.3 0.05" rgba="0.2 0.2 0.2 1"/>
+            <body name="drone_carrier" pos="-2.2 0 0.06">
+                <joint name="belt_joint" type="slide" axis="1 0 0" range="-2.2 2.2"/>
+                
+    <body name="cf2" pos="0 0 0.1" childclass="cf2">
+      <freejoint/>
+      <inertial pos="0 0 0" mass="0.027" diaginertia="2.3951e-5 2.3951e-5 3.2347e-5"/>
+      <camera name="track" pos="-1 0 .5" xyaxes="0 -1 0 1 0 2" mode="trackcom"/>
+      <geom mesh="cf2_0" material="propeller_plastic" class="visual"/>
+      <geom mesh="cf2_1" material="medium_gloss_plastic" class="visual"/>
+      <geom mesh="cf2_2" material="polished_gold" class="visual"/>
+      <geom mesh="cf2_3" material="polished_plastic" class="visual"/>
+      <geom mesh="cf2_4" material="burnished_chrome" class="visual"/>
+      <geom mesh="cf2_5" material="body_frame_plastic" class="visual"/>
+      <geom mesh="cf2_6" material="white" class="visual"/>
+      <geom mesh="cf2_collision_0" class="collision"/>
+      <geom mesh="cf2_collision_1" class="collision"/>
+      <geom mesh="cf2_collision_2" class="collision"/>
+      <geom mesh="cf2_collision_3" class="collision"/>
+      <geom mesh="cf2_collision_4" class="collision"/>
+      <geom mesh="cf2_collision_5" class="collision"/>
+      <geom mesh="cf2_collision_6" class="collision"/>
+      <geom mesh="cf2_collision_7" class="collision"/>
+      <geom mesh="cf2_collision_8" class="collision"/>
+      <geom mesh="cf2_collision_9" class="collision"/>
+      <geom mesh="cf2_collision_10" class="collision"/>
+      <geom mesh="cf2_collision_11" class="collision"/>
+      <geom mesh="cf2_collision_12" class="collision"/>
+      <geom mesh="cf2_collision_13" class="collision"/>
+      <geom mesh="cf2_collision_14" class="collision"/>
+      <geom mesh="cf2_collision_15" class="collision"/>
+      <geom mesh="cf2_collision_16" class="collision"/>
+      <geom mesh="cf2_collision_17" class="collision"/>
+      <geom mesh="cf2_collision_18" class="collision"/>
+      <geom mesh="cf2_collision_19" class="collision"/>
+      <geom mesh="cf2_collision_20" class="collision"/>
+      <geom mesh="cf2_collision_21" class="collision"/>
+      <geom mesh="cf2_collision_22" class="collision"/>
+      <geom mesh="cf2_collision_23" class="collision"/>
+      <geom mesh="cf2_collision_24" class="collision"/>
+      <geom mesh="cf2_collision_25" class="collision"/>
+      <geom mesh="cf2_collision_26" class="collision"/>
+      <geom mesh="cf2_collision_27" class="collision"/>
+      <geom mesh="cf2_collision_28" class="collision"/>
+      <geom mesh="cf2_collision_29" class="collision"/>
+      <geom mesh="cf2_collision_30" class="collision"/>
+      <geom mesh="cf2_collision_31" class="collision"/>
+      <site name="imu"/>
+      <site name="actuation"/>
+    </body>
+  
+            </body>
+        </body>
+
+        <body name="L1_base" pos="-0.8 -0.6 0" euler="0 0 0">
+            <geom type="box" size="0.1 0.1 0.02" rgba="0.3 0.3 0.3 1"/>
+        
+    <body name="L1_link00" childclass="z1">
+      <inertial pos="-0.00334984 -0.00013615 0.0249584" quat="-0.00692194 0.682592 0.00133293 0.730766" mass="0.472475"
+        diaginertia="0.000531375 0.000415207 0.000378658"/>
+      <geom class="visual" mesh="z1_Link00"/>
+      <geom size="0.0325 0.0255" pos="0 0 0.0255" class="collision"/>
+      <body name="L1_link01" pos="0 0 0.0585">
+        <inertial pos="2.47e-06 -0.00025198 0.0231717" quat="0.708578 0.705633 0.000281462 -0.000355927" mass="0.673326"
+          diaginertia="0.00128328 0.000839362 0.000719308"/>
+        <joint name="L1_joint1" axis="0 0 1" range="-2.61799 2.61799"/>
+        <geom class="visual" mesh="z1_Link01"/>
+        <body name="L1_link02" pos="0 0 0.045">
+          <inertial pos="-0.110126 0.00240029 0.00158266" quat="0.00748058 0.707092 -0.0114473 0.70699" mass="1.19132"
+            diaginertia="0.0246612 0.0243113 0.00100468"/>
+          <joint name="L1_joint2" axis="0 1 0" range="0 2.96706" damping="2"/>
+          <geom class="visual" mesh="z1_Link02"/>
+          <geom size="0.0325 0.051" quat="1 1 0 0" class="collision"/>
+          <geom size="0.0225 0.1175" pos="-0.1625 0 0" quat="1 0 1 0" class="collision"/>
+          <geom size="0.0325 0.0255" pos="-0.35 0 0" quat="1 1 0 0" class="collision"/>
+          <body name="L1_link03" pos="-0.35 0 0">
+            <inertial pos="0.106092 -0.00541815 0.0347638" quat="0.540557 0.443575 0.426319 0.573839" mass="0.839409"
+              diaginertia="0.00954365 0.00938711 0.000558432"/>
+            <joint name="L1_joint3" axis="0 1 0" range="-2.87979 0"/>
+            <geom class="visual" mesh="z1_Link03"/>
+            <geom size="0.02 0.058" pos="0.128 0 0.055" quat="1 0 1 0" class="collision"/>
+            <geom size="0.0325 0.0295" pos="0.2205 0 0.055" quat="0.5 -0.5 0.5 0.5" class="collision"/>
+            <body name="L1_link04" pos="0.218 0 0.057">
+              <inertial pos="0.0436668 0.00364738 -0.00170192" quat="0.0390835 0.726445 -0.0526787 0.684087"
+                mass="0.564046" diaginertia="0.000981656 0.00094053 0.000302655"/>
+              <joint name="L1_joint4" axis="0 1 0" range="-1.51844 1.51844"/>
+              <geom class="visual" mesh="z1_Link04"/>
+              <geom size="0.0325 0.0335" pos="0.072 0 0" class="collision"/>
+              <body name="L1_link05" pos="0.07 0 0">
+                <inertial pos="0.0312153 0 0.00646316" quat="0.462205 0.535209 0.53785 0.45895" mass="0.389385"
+                  diaginertia="0.000558961 0.000547317 0.000167332"/>
+                <joint name="L1_joint5" axis="0 0 1" range="-1.3439 1.3439"/>
+                <geom class="visual" mesh="z1_Link05"/>
+                <body name="L1_link06" pos="0.0492 0 0">
+                  <inertial pos="0.0241569 -0.00017355 -0.00143876" quat="0.998779 0.0457735 -0.00663717 0.0173548"
+                    mass="0.288758" diaginertia="0.00018333 0.000147464 0.000146786"/>
+                  <joint name="L1_joint6" axis="1 0 0" range="-2.79253 2.79253"/>
+                  <geom class="visual" mesh="z1_Link06"/>
+                  <geom size="0.0325 0.0255" pos="0.0255 0 0" quat="1 0 1 0" class="collision"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </body>
+
+        <body name="L2_base" pos="0.8 -0.6 0" euler="0 0 0">
+            <geom type="box" size="0.1 0.1 0.02" rgba="0.3 0.3 0.3 1"/>
+        
+    <body name="L2_link00" childclass="z1">
+      <inertial pos="-0.00334984 -0.00013615 0.0249584" quat="-0.00692194 0.682592 0.00133293 0.730766" mass="0.472475"
+        diaginertia="0.000531375 0.000415207 0.000378658"/>
+      <geom class="visual" mesh="z1_Link00"/>
+      <geom size="0.0325 0.0255" pos="0 0 0.0255" class="collision"/>
+      <body name="L2_link01" pos="0 0 0.0585">
+        <inertial pos="2.47e-06 -0.00025198 0.0231717" quat="0.708578 0.705633 0.000281462 -0.000355927" mass="0.673326"
+          diaginertia="0.00128328 0.000839362 0.000719308"/>
+        <joint name="L2_joint1" axis="0 0 1" range="-2.61799 2.61799"/>
+        <geom class="visual" mesh="z1_Link01"/>
+        <body name="L2_link02" pos="0 0 0.045">
+          <inertial pos="-0.110126 0.00240029 0.00158266" quat="0.00748058 0.707092 -0.0114473 0.70699" mass="1.19132"
+            diaginertia="0.0246612 0.0243113 0.00100468"/>
+          <joint name="L2_joint2" axis="0 1 0" range="0 2.96706" damping="2"/>
+          <geom class="visual" mesh="z1_Link02"/>
+          <geom size="0.0325 0.051" quat="1 1 0 0" class="collision"/>
+          <geom size="0.0225 0.1175" pos="-0.1625 0 0" quat="1 0 1 0" class="collision"/>
+          <geom size="0.0325 0.0255" pos="-0.35 0 0" quat="1 1 0 0" class="collision"/>
+          <body name="L2_link03" pos="-0.35 0 0">
+            <inertial pos="0.106092 -0.00541815 0.0347638" quat="0.540557 0.443575 0.426319 0.573839" mass="0.839409"
+              diaginertia="0.00954365 0.00938711 0.000558432"/>
+            <joint name="L2_joint3" axis="0 1 0" range="-2.87979 0"/>
+            <geom class="visual" mesh="z1_Link03"/>
+            <geom size="0.02 0.058" pos="0.128 0 0.055" quat="1 0 1 0" class="collision"/>
+            <geom size="0.0325 0.0295" pos="0.2205 0 0.055" quat="0.5 -0.5 0.5 0.5" class="collision"/>
+            <body name="L2_link04" pos="0.218 0 0.057">
+              <inertial pos="0.0436668 0.00364738 -0.00170192" quat="0.0390835 0.726445 -0.0526787 0.684087"
+                mass="0.564046" diaginertia="0.000981656 0.00094053 0.000302655"/>
+              <joint name="L2_joint4" axis="0 1 0" range="-1.51844 1.51844"/>
+              <geom class="visual" mesh="z1_Link04"/>
+              <geom size="0.0325 0.0335" pos="0.072 0 0" class="collision"/>
+              <body name="L2_link05" pos="0.07 0 0">
+                <inertial pos="0.0312153 0 0.00646316" quat="0.462205 0.535209 0.53785 0.45895" mass="0.389385"
+                  diaginertia="0.000558961 0.000547317 0.000167332"/>
+                <joint name="L2_joint5" axis="0 0 1" range="-1.3439 1.3439"/>
+                <geom class="visual" mesh="z1_Link05"/>
+                <body name="L2_link06" pos="0.0492 0 0">
+                  <inertial pos="0.0241569 -0.00017355 -0.00143876" quat="0.998779 0.0457735 -0.00663717 0.0173548"
+                    mass="0.288758" diaginertia="0.00018333 0.000147464 0.000146786"/>
+                  <joint name="L2_joint6" axis="1 0 0" range="-2.79253 2.79253"/>
+                  <geom class="visual" mesh="z1_Link06"/>
+                  <geom size="0.0325 0.0255" pos="0.0255 0 0" quat="1 0 1 0" class="collision"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </body>
+
+        <body name="R1_base" pos="-0.8 0.6 0" euler="0 0 3.14">
+            <geom type="box" size="0.1 0.1 0.02" rgba="0.3 0.3 0.3 1"/>
+        
+    <body name="R1_link00" childclass="z1">
+      <inertial pos="-0.00334984 -0.00013615 0.0249584" quat="-0.00692194 0.682592 0.00133293 0.730766" mass="0.472475"
+        diaginertia="0.000531375 0.000415207 0.000378658"/>
+      <geom class="visual" mesh="z1_Link00"/>
+      <geom size="0.0325 0.0255" pos="0 0 0.0255" class="collision"/>
+      <body name="R1_link01" pos="0 0 0.0585">
+        <inertial pos="2.47e-06 -0.00025198 0.0231717" quat="0.708578 0.705633 0.000281462 -0.000355927" mass="0.673326"
+          diaginertia="0.00128328 0.000839362 0.000719308"/>
+        <joint name="R1_joint1" axis="0 0 1" range="-2.61799 2.61799"/>
+        <geom class="visual" mesh="z1_Link01"/>
+        <body name="R1_link02" pos="0 0 0.045">
+          <inertial pos="-0.110126 0.00240029 0.00158266" quat="0.00748058 0.707092 -0.0114473 0.70699" mass="1.19132"
+            diaginertia="0.0246612 0.0243113 0.00100468"/>
+          <joint name="R1_joint2" axis="0 1 0" range="0 2.96706" damping="2"/>
+          <geom class="visual" mesh="z1_Link02"/>
+          <geom size="0.0325 0.051" quat="1 1 0 0" class="collision"/>
+          <geom size="0.0225 0.1175" pos="-0.1625 0 0" quat="1 0 1 0" class="collision"/>
+          <geom size="0.0325 0.0255" pos="-0.35 0 0" quat="1 1 0 0" class="collision"/>
+          <body name="R1_link03" pos="-0.35 0 0">
+            <inertial pos="0.106092 -0.00541815 0.0347638" quat="0.540557 0.443575 0.426319 0.573839" mass="0.839409"
+              diaginertia="0.00954365 0.00938711 0.000558432"/>
+            <joint name="R1_joint3" axis="0 1 0" range="-2.87979 0"/>
+            <geom class="visual" mesh="z1_Link03"/>
+            <geom size="0.02 0.058" pos="0.128 0 0.055" quat="1 0 1 0" class="collision"/>
+            <geom size="0.0325 0.0295" pos="0.2205 0 0.055" quat="0.5 -0.5 0.5 0.5" class="collision"/>
+            <body name="R1_link04" pos="0.218 0 0.057">
+              <inertial pos="0.0436668 0.00364738 -0.00170192" quat="0.0390835 0.726445 -0.0526787 0.684087"
+                mass="0.564046" diaginertia="0.000981656 0.00094053 0.000302655"/>
+              <joint name="R1_joint4" axis="0 1 0" range="-1.51844 1.51844"/>
+              <geom class="visual" mesh="z1_Link04"/>
+              <geom size="0.0325 0.0335" pos="0.072 0 0" class="collision"/>
+              <body name="R1_link05" pos="0.07 0 0">
+                <inertial pos="0.0312153 0 0.00646316" quat="0.462205 0.535209 0.53785 0.45895" mass="0.389385"
+                  diaginertia="0.000558961 0.000547317 0.000167332"/>
+                <joint name="R1_joint5" axis="0 0 1" range="-1.3439 1.3439"/>
+                <geom class="visual" mesh="z1_Link05"/>
+                <body name="R1_link06" pos="0.0492 0 0">
+                  <inertial pos="0.0241569 -0.00017355 -0.00143876" quat="0.998779 0.0457735 -0.00663717 0.0173548"
+                    mass="0.288758" diaginertia="0.00018333 0.000147464 0.000146786"/>
+                  <joint name="R1_joint6" axis="1 0 0" range="-2.79253 2.79253"/>
+                  <geom class="visual" mesh="z1_Link06"/>
+                  <geom size="0.0325 0.0255" pos="0.0255 0 0" quat="1 0 1 0" class="collision"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </body>
+
+        <body name="R2_base" pos="0.8 0.6 0" euler="0 0 3.14">
+            <geom type="box" size="0.1 0.1 0.02" rgba="0.3 0.3 0.3 1"/>
+        
+    <body name="R2_link00" childclass="z1">
+      <inertial pos="-0.00334984 -0.00013615 0.0249584" quat="-0.00692194 0.682592 0.00133293 0.730766" mass="0.472475"
+        diaginertia="0.000531375 0.000415207 0.000378658"/>
+      <geom class="visual" mesh="z1_Link00"/>
+      <geom size="0.0325 0.0255" pos="0 0 0.0255" class="collision"/>
+      <body name="R2_link01" pos="0 0 0.0585">
+        <inertial pos="2.47e-06 -0.00025198 0.0231717" quat="0.708578 0.705633 0.000281462 -0.000355927" mass="0.673326"
+          diaginertia="0.00128328 0.000839362 0.000719308"/>
+        <joint name="R2_joint1" axis="0 0 1" range="-2.61799 2.61799"/>
+        <geom class="visual" mesh="z1_Link01"/>
+        <body name="R2_link02" pos="0 0 0.045">
+          <inertial pos="-0.110126 0.00240029 0.00158266" quat="0.00748058 0.707092 -0.0114473 0.70699" mass="1.19132"
+            diaginertia="0.0246612 0.0243113 0.00100468"/>
+          <joint name="R2_joint2" axis="0 1 0" range="0 2.96706" damping="2"/>
+          <geom class="visual" mesh="z1_Link02"/>
+          <geom size="0.0325 0.051" quat="1 1 0 0" class="collision"/>
+          <geom size="0.0225 0.1175" pos="-0.1625 0 0" quat="1 0 1 0" class="collision"/>
+          <geom size="0.0325 0.0255" pos="-0.35 0 0" quat="1 1 0 0" class="collision"/>
+          <body name="R2_link03" pos="-0.35 0 0">
+            <inertial pos="0.106092 -0.00541815 0.0347638" quat="0.540557 0.443575 0.426319 0.573839" mass="0.839409"
+              diaginertia="0.00954365 0.00938711 0.000558432"/>
+            <joint name="R2_joint3" axis="0 1 0" range="-2.87979 0"/>
+            <geom class="visual" mesh="z1_Link03"/>
+            <geom size="0.02 0.058" pos="0.128 0 0.055" quat="1 0 1 0" class="collision"/>
+            <geom size="0.0325 0.0295" pos="0.2205 0 0.055" quat="0.5 -0.5 0.5 0.5" class="collision"/>
+            <body name="R2_link04" pos="0.218 0 0.057">
+              <inertial pos="0.0436668 0.00364738 -0.00170192" quat="0.0390835 0.726445 -0.0526787 0.684087"
+                mass="0.564046" diaginertia="0.000981656 0.00094053 0.000302655"/>
+              <joint name="R2_joint4" axis="0 1 0" range="-1.51844 1.51844"/>
+              <geom class="visual" mesh="z1_Link04"/>
+              <geom size="0.0325 0.0335" pos="0.072 0 0" class="collision"/>
+              <body name="R2_link05" pos="0.07 0 0">
+                <inertial pos="0.0312153 0 0.00646316" quat="0.462205 0.535209 0.53785 0.45895" mass="0.389385"
+                  diaginertia="0.000558961 0.000547317 0.000167332"/>
+                <joint name="R2_joint5" axis="0 0 1" range="-1.3439 1.3439"/>
+                <geom class="visual" mesh="z1_Link05"/>
+                <body name="R2_link06" pos="0.0492 0 0">
+                  <inertial pos="0.0241569 -0.00017355 -0.00143876" quat="0.998779 0.0457735 -0.00663717 0.0173548"
+                    mass="0.288758" diaginertia="0.00018333 0.000147464 0.000146786"/>
+                  <joint name="R2_joint6" axis="1 0 0" range="-2.79253 2.79253"/>
+                  <geom class="visual" mesh="z1_Link06"/>
+                  <geom size="0.0325 0.0255" pos="0.0255 0 0" quat="1 0 1 0" class="collision"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </body>
+
+    </worldbody>
+    <actuator>
+        <velocity name='belt_v' joint='belt_joint' kv='200'/>
+
+    <general class="z1" name="L1_motor1" joint="L1_joint1" ctrlrange="-2.61799 2.61799"/>
+    <general class="z1" name="L1_motor2" joint="L1_joint2" ctrlrange="0 2.96706" forcerange="-60 60" gainprm="1500"
+      biasprm="0 -1500 -150"/>
+    <general class="z1" name="L1_motor3" joint="L1_joint3" ctrlrange="-2.87979 0"/>
+    <general class="z1" name="L1_motor4" joint="L1_joint4" ctrlrange="-1.51844 1.51844"/>
+    <general class="z1" name="L1_motor5" joint="L1_joint5" ctrlrange="-1.3439 1.3439"/>
+    <general class="z1" name="L1_motor6" joint="L1_joint6" ctrlrange="-2.79253 2.79253"/>
+  
+
+    <general class="z1" name="L2_motor1" joint="L2_joint1" ctrlrange="-2.61799 2.61799"/>
+    <general class="z1" name="L2_motor2" joint="L2_joint2" ctrlrange="0 2.96706" forcerange="-60 60" gainprm="1500"
+      biasprm="0 -1500 -150"/>
+    <general class="z1" name="L2_motor3" joint="L2_joint3" ctrlrange="-2.87979 0"/>
+    <general class="z1" name="L2_motor4" joint="L2_joint4" ctrlrange="-1.51844 1.51844"/>
+    <general class="z1" name="L2_motor5" joint="L2_joint5" ctrlrange="-1.3439 1.3439"/>
+    <general class="z1" name="L2_motor6" joint="L2_joint6" ctrlrange="-2.79253 2.79253"/>
+  
+
+    <general class="z1" name="R1_motor1" joint="R1_joint1" ctrlrange="-2.61799 2.61799"/>
+    <general class="z1" name="R1_motor2" joint="R1_joint2" ctrlrange="0 2.96706" forcerange="-60 60" gainprm="1500"
+      biasprm="0 -1500 -150"/>
+    <general class="z1" name="R1_motor3" joint="R1_joint3" ctrlrange="-2.87979 0"/>
+    <general class="z1" name="R1_motor4" joint="R1_joint4" ctrlrange="-1.51844 1.51844"/>
+    <general class="z1" name="R1_motor5" joint="R1_joint5" ctrlrange="-1.3439 1.3439"/>
+    <general class="z1" name="R1_motor6" joint="R1_joint6" ctrlrange="-2.79253 2.79253"/>
+  
+
+    <general class="z1" name="R2_motor1" joint="R2_joint1" ctrlrange="-2.61799 2.61799"/>
+    <general class="z1" name="R2_motor2" joint="R2_joint2" ctrlrange="0 2.96706" forcerange="-60 60" gainprm="1500"
+      biasprm="0 -1500 -150"/>
+    <general class="z1" name="R2_motor3" joint="R2_joint3" ctrlrange="-2.87979 0"/>
+    <general class="z1" name="R2_motor4" joint="R2_joint4" ctrlrange="-1.51844 1.51844"/>
+    <general class="z1" name="R2_motor5" joint="R2_joint5" ctrlrange="-1.3439 1.3439"/>
+    <general class="z1" name="R2_motor6" joint="R2_joint6" ctrlrange="-2.79253 2.79253"/>
+  
+    </actuator>
+</mujoco>

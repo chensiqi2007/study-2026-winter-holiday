@@ -1,0 +1,151 @@
+<mujoco model="z1_factory_production">
+    <compiler angle="radian" meshdir="assets" autolimits="true"/>
+    <option integrator="implicitfast" timestep="0.002"/>
+
+    <asset>
+        <texture type="2d" name="grid" builtin="checker" mark="edge" rgb1="0.05 0.05 0.05" rgb2="0.1 0.1 0.1" width="300" height="300"/>
+        <material name="floor_mat" texture="grid" texrepeat="5 5" reflectance="0.2"/>
+        <material name="white_metal" rgba="0.9 0.9 0.95 1" shininess="1" reflectance="0.8"/>
+
+        <mesh name="link00" file="z1_Link00.stl"/><mesh name="link01" file="z1_Link01.stl"/>
+        <mesh name="link02" file="z1_Link02.stl"/><mesh name="link03" file="z1_Link03.stl"/>
+        <mesh name="link04" file="z1_Link04.stl"/><mesh name="link05" file="z1_Link05.stl"/>
+        <mesh name="link06" file="z1_Link06.stl"/>
+
+                <mesh name="cf2_0" file="cf2_0.obj"/>
+        <mesh name="cf2_1" file="cf2_1.obj"/>
+        <mesh name="cf2_2" file="cf2_2.obj"/>
+        <mesh name="cf2_3" file="cf2_3.obj"/>
+        <mesh name="cf2_4" file="cf2_4.obj"/>
+        <mesh name="cf2_5" file="cf2_5.obj"/>
+        <mesh name="cf2_6" file="cf2_6.obj"/>
+        <mesh name="cf2_collision_0" file="cf2_collision_0.obj"/>
+        <mesh name="cf2_collision_1" file="cf2_collision_1.obj"/>
+        <mesh name="cf2_collision_2" file="cf2_collision_2.obj"/>
+        <mesh name="cf2_collision_3" file="cf2_collision_3.obj"/>
+        <mesh name="cf2_collision_4" file="cf2_collision_4.obj"/>
+        <mesh name="cf2_collision_5" file="cf2_collision_5.obj"/>
+        <mesh name="cf2_collision_6" file="cf2_collision_6.obj"/>
+        <mesh name="cf2_collision_7" file="cf2_collision_7.obj"/>
+        <mesh name="cf2_collision_8" file="cf2_collision_8.obj"/>
+        <mesh name="cf2_collision_9" file="cf2_collision_9.obj"/>
+        <mesh name="cf2_collision_10" file="cf2_collision_10.obj"/>
+        <mesh name="cf2_collision_11" file="cf2_collision_11.obj"/>
+        <mesh name="cf2_collision_12" file="cf2_collision_12.obj"/>
+        <mesh name="cf2_collision_13" file="cf2_collision_13.obj"/>
+        <mesh name="cf2_collision_14" file="cf2_collision_14.obj"/>
+        <mesh name="cf2_collision_15" file="cf2_collision_15.obj"/>
+        <mesh name="cf2_collision_16" file="cf2_collision_16.obj"/>
+        <mesh name="cf2_collision_17" file="cf2_collision_17.obj"/>
+        <mesh name="cf2_collision_18" file="cf2_collision_18.obj"/>
+        <mesh name="cf2_collision_19" file="cf2_collision_19.obj"/>
+        <mesh name="cf2_collision_20" file="cf2_collision_20.obj"/>
+        <mesh name="cf2_collision_21" file="cf2_collision_21.obj"/>
+        <mesh name="cf2_collision_22" file="cf2_collision_22.obj"/>
+        <mesh name="cf2_collision_23" file="cf2_collision_23.obj"/>
+        <mesh name="cf2_collision_24" file="cf2_collision_24.obj"/>
+        <mesh name="cf2_collision_25" file="cf2_collision_25.obj"/>
+        <mesh name="cf2_collision_26" file="cf2_collision_26.obj"/>
+        <mesh name="cf2_collision_27" file="cf2_collision_27.obj"/>
+        <mesh name="cf2_collision_28" file="cf2_collision_28.obj"/>
+        <mesh name="cf2_collision_29" file="cf2_collision_29.obj"/>
+        <mesh name="cf2_collision_30" file="cf2_collision_30.obj"/>
+        <mesh name="cf2_collision_31" file="cf2_collision_31.obj"/>
+
+
+        <material name="propeller_plastic" rgba="0.792 0.820 0.933 1"/>
+        <material name="polished_gold" rgba="0.969 0.878 0.6 1"/>
+        <material name="polished_plastic" rgba="0.631 0.659 0.678 1"/>
+        <material name="medium_gloss_plastic" rgba="0.109 0.184 0.0 1"/>
+        <material name="white" rgba="1 1 1 1"/>
+        <material name="body_frame_plastic" rgba="0.102 0.102 0.102 1"/>
+        <material name="burnished_chrome" rgba="0.898 0.898 0.898 1"/>
+    </asset>
+
+    <default>
+        <default class="z1">
+            <joint damping="3" frictionloss="1"/>
+            <position kp="500" forcerange="-50 50"/>
+        </default>
+
+        <default class="cf2">
+            <default class="visual">
+                <geom group="2" type="mesh" contype="0" conaffinity="0"/>
+            </default>
+            <default class="collision">
+                <geom group="3" type="mesh"/>
+            </default>
+            <site group="5"/>
+        </default>
+    </default>
+
+    <worldbody>
+        <light pos="0 0 5" diffuse="1 1 1"/>
+        <geom name="floor" size="5 5 0.01" type="plane" material="floor_mat"/>
+
+        <body name="conveyor" pos="0 0 0.4">
+            <geom type="box" size="2.5 0.3 0.05" rgba="0.2 0.2 0.2 1"/>
+
+            <body name="drone_carrier" pos="-2.2 0 0.06">
+                <joint name="belt_joint" type="slide" axis="1 0 0" range="-2.2 2.2"/>
+                <body name="cf2" pos="0 0 0.1" childclass="cf2">
+      <inertial pos="0 0 0" mass="0.027" diaginertia="2.3951e-5 2.3951e-5 3.2347e-5" />
+      <camera name="track" pos="-1 0 .5" xyaxes="0 -1 0 1 0 2" mode="trackcom" />
+      <geom mesh="cf2_0" material="propeller_plastic" class="visual" />
+      <geom mesh="cf2_1" material="medium_gloss_plastic" class="visual" />
+      <geom mesh="cf2_2" material="polished_gold" class="visual" />
+      <geom mesh="cf2_3" material="polished_plastic" class="visual" />
+      <geom mesh="cf2_4" material="burnished_chrome" class="visual" />
+      <geom mesh="cf2_5" material="body_frame_plastic" class="visual" />
+      <geom mesh="cf2_6" material="white" class="visual" />
+      <geom mesh="cf2_collision_0" class="collision" />
+      <geom mesh="cf2_collision_1" class="collision" />
+      <geom mesh="cf2_collision_2" class="collision" />
+      <geom mesh="cf2_collision_3" class="collision" />
+      <geom mesh="cf2_collision_4" class="collision" />
+      <geom mesh="cf2_collision_5" class="collision" />
+      <geom mesh="cf2_collision_6" class="collision" />
+      <geom mesh="cf2_collision_7" class="collision" />
+      <geom mesh="cf2_collision_8" class="collision" />
+      <geom mesh="cf2_collision_9" class="collision" />
+      <geom mesh="cf2_collision_10" class="collision" />
+      <geom mesh="cf2_collision_11" class="collision" />
+      <geom mesh="cf2_collision_12" class="collision" />
+      <geom mesh="cf2_collision_13" class="collision" />
+      <geom mesh="cf2_collision_14" class="collision" />
+      <geom mesh="cf2_collision_15" class="collision" />
+      <geom mesh="cf2_collision_16" class="collision" />
+      <geom mesh="cf2_collision_17" class="collision" />
+      <geom mesh="cf2_collision_18" class="collision" />
+      <geom mesh="cf2_collision_19" class="collision" />
+      <geom mesh="cf2_collision_20" class="collision" />
+      <geom mesh="cf2_collision_21" class="collision" />
+      <geom mesh="cf2_collision_22" class="collision" />
+      <geom mesh="cf2_collision_23" class="collision" />
+      <geom mesh="cf2_collision_24" class="collision" />
+      <geom mesh="cf2_collision_25" class="collision" />
+      <geom mesh="cf2_collision_26" class="collision" />
+      <geom mesh="cf2_collision_27" class="collision" />
+      <geom mesh="cf2_collision_28" class="collision" />
+      <geom mesh="cf2_collision_29" class="collision" />
+      <geom mesh="cf2_collision_30" class="collision" />
+      <geom mesh="cf2_collision_31" class="collision" />
+      <site name="imu" />
+      <site name="actuation" />
+    </body>
+  
+            </body>
+        </body>
+
+        <body name="L1" pos="-0.8 -0.6 0"><body pos="0 0 0.2" childclass="z1"><joint name="L1_j" axis="0 0 1"/><geom mesh="link00" material="white_metal"/></body></body>
+        <body name="L2" pos="0.8 -0.6 0"><body pos="0 0 0.2" childclass="z1"><joint name="L2_j" axis="0 0 1"/><geom mesh="link00" material="white_metal"/></body></body>
+        <body name="R1" pos="-0.8 0.6 0" euler="0 0 3.14"><body pos="0 0 0.2" childclass="z1"><joint name="R1_j" axis="0 0 1"/><geom mesh="link00" material="white_metal"/></body></body>
+        <body name="R2" pos="0.8 0.6 0" euler="0 0 3.14"><body pos="0 0 0.2" childclass="z1"><joint name="R2_j" axis="0 0 1"/><geom mesh="link00" material="white_metal"/></body></body>
+    </worldbody>
+
+    <actuator>
+        <position name="L1_p" joint="L1_j"/><position name="L2_p" joint="L2_j"/>
+        <position name="R1_p" joint="R1_j"/><position name="R2_p" joint="R2_j"/>
+        <velocity name="belt_v" joint="belt_joint" kv="200"/>
+    </actuator>
+</mujoco>

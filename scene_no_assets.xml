@@ -1,0 +1,223 @@
+<mujoco model="z1_factory_primitives">
+    <compiler angle="radian" autolimits="true"/>
+    <option integrator="implicitfast" timestep="0.002"/>
+
+    <visual>
+        <rgba haze="0.15 0.25 0.35 1"/>
+        <quality shadowsize="4096"/>
+    </visual>
+
+    <default>
+        <default class="z1">
+            <joint damping="5" frictionloss="0.5"/>
+            <motor ctrlrange="-50 50"/>
+            <geom type="capsule" size="0.035" rgba="0.9 0.9 0.95 1" material="metal"/>
+        </default>
+        <default class="visual_joint">
+            <geom type="cylinder" size="0.04 0.04" rgba="0.2 0.2 0.2 1" fromto="0 0 -0.04 0 0 0.04"/>
+        </default>
+    </default>
+
+    <asset>
+        <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="512"/>
+        <texture type="2d" name="grid" builtin="checker" mark="edge" rgb1="0.1 0.15 0.2" rgb2="0.2 0.25 0.3" width="300" height="300"/>
+        <material name="floor_mat" texture="grid" texrepeat="5 5" reflectance="0.2"/>
+        <material name="metal" shininess="0.8" reflectance="0.5"/>
+    </asset>
+
+    <worldbody>
+        <light pos="0 0 5" diffuse="1 1 1" dir="0 0 -1" castshadow="true"/>
+        <geom name="floor" size="5 5 0.01" type="plane" material="floor_mat"/>
+
+        <body name="conveyor" pos="0 0 0.4">
+            <geom type="box" size="2.5 0.3 0.05" rgba="0.2 0.2 0.2 1"/>
+
+            <body name="drone_carrier" pos="-1.8 0 0.06">
+                <joint name="belt_joint" type="slide" axis="1 0 0" range="-2.2 2.2"/>
+                <geom type="box" size="0.12 0.12 0.02" rgba="0.1 0.1 0.1 1"/>
+                <geom type="cylinder" size="0.06 0.01" pos="0.1 0.1 0.02" rgba="1 0.8 0 1"/> <geom type="cylinder" size="0.06 0.01" pos="0.1 -0.1 0.02" rgba="1 0.8 0 1"/>
+                <geom type="cylinder" size="0.06 0.01" pos="-0.1 0.1 0.02" rgba="1 0.8 0 1"/>
+                <geom type="cylinder" size="0.06 0.01" pos="-0.1 -0.1 0.02" rgba="1 0.8 0 1"/>
+
+                <geom name="led_red" type="sphere" size="0.02" pos="0 0 0.05" rgba="1 0 0 1"/>
+            </body>
+        </body>
+
+        <body name="L1_base" pos="-0.8 -0.6 0" euler="0 0 0">
+            <geom type="box" size="0.1 0.1 0.2" pos="0 0 0.2" rgba="0.3 0.3 0.3 1"/>
+
+            <body name="L1_l0" pos="0 0 0.4" childclass="z1">
+                <geom type="cylinder" size="0.05 0.03"/> 
+
+                <body name="L1_l1" pos="0 0 0.06">
+                    <joint name="L1_j1" axis="0 0 1"/>
+                    <geom fromto="0 0 0 0 0.08 0" size="0.04"/> <geom class="visual_joint" pos="0 0.08 0" euler="1.57 0 0"/>
+
+                    <body name="L1_l2" pos="0 0.08 0">
+                        <joint name="L1_j2" axis="0 1 0"/>
+                        <geom fromto="0 0 0 0 0 0.35" size="0.035" rgba="0.8 0.8 0.9 1"/> <geom class="visual_joint" pos="0 0 0.35" euler="1.57 0 0"/>
+
+                        <body name="L1_l3" pos="0 0 0.35">
+                            <joint name="L1_j3" axis="0 1 0"/>
+                            <geom fromto="0 0 0 0.15 0 0" size="0.03"/> <body name="L1_l4" pos="0.15 0 0">
+                                <joint name="L1_j4" axis="0 1 0"/>
+                                <geom fromto="0 0 0 0.25 0 0" size="0.028" rgba="0.8 0.8 0.9 1"/>
+
+                                <body name="L1_l5" pos="0.25 0 0">
+                                    <joint name="L1_j5" axis="1 0 0"/>
+                                    <geom type="cylinder" size="0.025 0.03" euler="0 1.57 0"/>
+
+                                    <body name="L1_l6" pos="0.05 0 0">
+                                        <joint name="L1_j6" axis="1 0 0"/>
+                                        <geom type="cylinder" size="0.02 0.01" euler="0 1.57 0" rgba="0.2 0.2 0.2 1"/>
+                                        <geom type="sphere" size="0.01" pos="0.015 0 0" rgba="1 0 0 1"/> 
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+
+        <body name="L2_base" pos="0.8 -0.6 0" euler="0 0 0">
+            <geom type="box" size="0.1 0.1 0.2" pos="0 0 0.2" rgba="0.3 0.3 0.3 1"/>
+
+            <body name="L2_l0" pos="0 0 0.4" childclass="z1">
+                <geom type="cylinder" size="0.05 0.03"/> 
+
+                <body name="L2_l1" pos="0 0 0.06">
+                    <joint name="L2_j1" axis="0 0 1"/>
+                    <geom fromto="0 0 0 0 0.08 0" size="0.04"/> <geom class="visual_joint" pos="0 0.08 0" euler="1.57 0 0"/>
+
+                    <body name="L2_l2" pos="0 0.08 0">
+                        <joint name="L2_j2" axis="0 1 0"/>
+                        <geom fromto="0 0 0 0 0 0.35" size="0.035" rgba="0.8 0.8 0.9 1"/> <geom class="visual_joint" pos="0 0 0.35" euler="1.57 0 0"/>
+
+                        <body name="L2_l3" pos="0 0 0.35">
+                            <joint name="L2_j3" axis="0 1 0"/>
+                            <geom fromto="0 0 0 0.15 0 0" size="0.03"/> <body name="L2_l4" pos="0.15 0 0">
+                                <joint name="L2_j4" axis="0 1 0"/>
+                                <geom fromto="0 0 0 0.25 0 0" size="0.028" rgba="0.8 0.8 0.9 1"/>
+
+                                <body name="L2_l5" pos="0.25 0 0">
+                                    <joint name="L2_j5" axis="1 0 0"/>
+                                    <geom type="cylinder" size="0.025 0.03" euler="0 1.57 0"/>
+
+                                    <body name="L2_l6" pos="0.05 0 0">
+                                        <joint name="L2_j6" axis="1 0 0"/>
+                                        <geom type="cylinder" size="0.02 0.01" euler="0 1.57 0" rgba="0.2 0.2 0.2 1"/>
+                                        <geom type="sphere" size="0.01" pos="0.015 0 0" rgba="1 0 0 1"/> 
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+
+        <body name="R1_base" pos="-0.8 0.6 0" euler="0 0 3.14">
+            <geom type="box" size="0.1 0.1 0.2" pos="0 0 0.2" rgba="0.3 0.3 0.3 1"/>
+
+            <body name="R1_l0" pos="0 0 0.4" childclass="z1">
+                <geom type="cylinder" size="0.05 0.03"/> 
+
+                <body name="R1_l1" pos="0 0 0.06">
+                    <joint name="R1_j1" axis="0 0 1"/>
+                    <geom fromto="0 0 0 0 0.08 0" size="0.04"/> <geom class="visual_joint" pos="0 0.08 0" euler="1.57 0 0"/>
+
+                    <body name="R1_l2" pos="0 0.08 0">
+                        <joint name="R1_j2" axis="0 1 0"/>
+                        <geom fromto="0 0 0 0 0 0.35" size="0.035" rgba="0.8 0.8 0.9 1"/> <geom class="visual_joint" pos="0 0 0.35" euler="1.57 0 0"/>
+
+                        <body name="R1_l3" pos="0 0 0.35">
+                            <joint name="R1_j3" axis="0 1 0"/>
+                            <geom fromto="0 0 0 0.15 0 0" size="0.03"/> <body name="R1_l4" pos="0.15 0 0">
+                                <joint name="R1_j4" axis="0 1 0"/>
+                                <geom fromto="0 0 0 0.25 0 0" size="0.028" rgba="0.8 0.8 0.9 1"/>
+
+                                <body name="R1_l5" pos="0.25 0 0">
+                                    <joint name="R1_j5" axis="1 0 0"/>
+                                    <geom type="cylinder" size="0.025 0.03" euler="0 1.57 0"/>
+
+                                    <body name="R1_l6" pos="0.05 0 0">
+                                        <joint name="R1_j6" axis="1 0 0"/>
+                                        <geom type="cylinder" size="0.02 0.01" euler="0 1.57 0" rgba="0.2 0.2 0.2 1"/>
+                                        <geom type="sphere" size="0.01" pos="0.015 0 0" rgba="1 0 0 1"/> 
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+
+        <body name="R2_base" pos="0.8 0.6 0" euler="0 0 3.14">
+            <geom type="box" size="0.1 0.1 0.2" pos="0 0 0.2" rgba="0.3 0.3 0.3 1"/>
+
+            <body name="R2_l0" pos="0 0 0.4" childclass="z1">
+                <geom type="cylinder" size="0.05 0.03"/> 
+
+                <body name="R2_l1" pos="0 0 0.06">
+                    <joint name="R2_j1" axis="0 0 1"/>
+                    <geom fromto="0 0 0 0 0.08 0" size="0.04"/> <geom class="visual_joint" pos="0 0.08 0" euler="1.57 0 0"/>
+
+                    <body name="R2_l2" pos="0 0.08 0">
+                        <joint name="R2_j2" axis="0 1 0"/>
+                        <geom fromto="0 0 0 0 0 0.35" size="0.035" rgba="0.8 0.8 0.9 1"/> <geom class="visual_joint" pos="0 0 0.35" euler="1.57 0 0"/>
+
+                        <body name="R2_l3" pos="0 0 0.35">
+                            <joint name="R2_j3" axis="0 1 0"/>
+                            <geom fromto="0 0 0 0.15 0 0" size="0.03"/> <body name="R2_l4" pos="0.15 0 0">
+                                <joint name="R2_j4" axis="0 1 0"/>
+                                <geom fromto="0 0 0 0.25 0 0" size="0.028" rgba="0.8 0.8 0.9 1"/>
+
+                                <body name="R2_l5" pos="0.25 0 0">
+                                    <joint name="R2_j5" axis="1 0 0"/>
+                                    <geom type="cylinder" size="0.025 0.03" euler="0 1.57 0"/>
+
+                                    <body name="R2_l6" pos="0.05 0 0">
+                                        <joint name="R2_j6" axis="1 0 0"/>
+                                        <geom type="cylinder" size="0.02 0.01" euler="0 1.57 0" rgba="0.2 0.2 0.2 1"/>
+                                        <geom type="sphere" size="0.01" pos="0.015 0 0" rgba="1 0 0 1"/> 
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+
+    </worldbody>
+    <actuator>
+        <velocity name="belt_v" joint="belt_joint" kv="200"/>
+        <position name="L1_p1" joint="L1_j1" kp="300" kv="20"/>
+        <position name="L1_p2" joint="L1_j2" kp="300" kv="20"/>
+        <position name="L1_p3" joint="L1_j3" kp="300" kv="20"/>
+        <position name="L1_p4" joint="L1_j4" kp="300" kv="20"/>
+        <position name="L1_p5" joint="L1_j5" kp="300" kv="20"/>
+        <position name="L1_p6" joint="L1_j6" kp="300" kv="20"/>
+        <position name="L2_p1" joint="L2_j1" kp="300" kv="20"/>
+        <position name="L2_p2" joint="L2_j2" kp="300" kv="20"/>
+        <position name="L2_p3" joint="L2_j3" kp="300" kv="20"/>
+        <position name="L2_p4" joint="L2_j4" kp="300" kv="20"/>
+        <position name="L2_p5" joint="L2_j5" kp="300" kv="20"/>
+        <position name="L2_p6" joint="L2_j6" kp="300" kv="20"/>
+        <position name="R1_p1" joint="R1_j1" kp="300" kv="20"/>
+        <position name="R1_p2" joint="R1_j2" kp="300" kv="20"/>
+        <position name="R1_p3" joint="R1_j3" kp="300" kv="20"/>
+        <position name="R1_p4" joint="R1_j4" kp="300" kv="20"/>
+        <position name="R1_p5" joint="R1_j5" kp="300" kv="20"/>
+        <position name="R1_p6" joint="R1_j6" kp="300" kv="20"/>
+        <position name="R2_p1" joint="R2_j1" kp="300" kv="20"/>
+        <position name="R2_p2" joint="R2_j2" kp="300" kv="20"/>
+        <position name="R2_p3" joint="R2_j3" kp="300" kv="20"/>
+        <position name="R2_p4" joint="R2_j4" kp="300" kv="20"/>
+        <position name="R2_p5" joint="R2_j5" kp="300" kv="20"/>
+        <position name="R2_p6" joint="R2_j6" kp="300" kv="20"/>
+
+    </actuator>
+</mujoco>
