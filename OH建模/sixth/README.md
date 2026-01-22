@@ -29,7 +29,42 @@ Crazyflie 2.1：
       z1.xml：Unitree Z1 机械臂描述文件；
       cf2.xml: Crazyflie 2.1 无人机描述文件。
       /assets: 存放所有 .stl (Z1) 和 .obj (CF2) 网格文件的文件夹。
-## 🚀 运行指南直接运行 Python 脚本，程序将自动生成 scene_final.xml 并启动可视化窗口：Bashpython main.py
+## 🚀 具体使用步骤
+### 1. 基础环境配置
+打开终端（CMD 或 PowerShell），执行以下命令安装必要的 Python 包：
+### 安装 MuJoCo 核心库及查看器（必须）
+    pip install mujoco mujoco-viewer numpy
+注意：根据项目代码要求，MuJoCo 版本必须大于 2.3.3。
+这个项目不需要安装任何复杂的外部软件（如 Unity 或特定的桌面版客户端），它完全运行在 Python 环境中。你只需要确保安装了 Python 的物理引擎库 mujoco 即可。
+
+以下是针对你手头文件的具体使用步骤：
+
+1. 基础环境配置
+打开终端（CMD 或 PowerShell），执行以下命令安装必要的 Python 包：
+
+Bash
+# 安装 MuJoCo 核心库及查看器（必须）
+pip install mujoco mujoco-viewer numpy
+注意：根据项目代码要求，MuJoCo 版本必须大于 2.3.3。
+
+### 2. 准备文件（至关重要）
+main.py 会动态读取并组合模型文件，如果文件位置不对，程序会立刻报错。请确保你的文件夹长这样：
+main.py (主运行脚本)
+z1.xml (机械臂模型)
+cf2.xml (无人机模型)
+assets/ (文件夹) —— 这里必须存放所有的模型零件文件（如 .stl 和 .obj 格式的文件）。
+
+### 3. 如何启动
+在终端进入该文件夹路径，运行：
+      python main.py
+
+### 4. 运行中的交互控制
+程序启动后，会弹出一个 3D 仿真窗口。你可以通过键盘的数字键来手动控制生产线的状态：
+<img src="./img/sample.png" width="500" height="400">
+
+为什么报错？ > 脚本中的 XML 会去 assets/ 目录下找零件，如果没有这个文件夹，或者零件不在里面，你会看到 File not found 的错误。
+
+运行指南直接运行 Python 脚本，程序将自动生成 scene_final.xml 并启动可视化窗口：Bashpython main.py
 ## 交互控制键在仿真窗口激活状态下，通过键盘按键实时切换产线状态：
 [9] 重置运输：将无人机 carrier 移回起点并重新运入产线。
 [1] 装配模式：四个机械臂同步执行垂直拾取与放置动作。
